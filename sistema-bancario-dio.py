@@ -8,6 +8,7 @@ saldo = 0
 total_saques_realizados = 0
 saques = []
 depositos = []
+extrato = []
 
 print(f'''
 {" BEM-VINDO AO BANCO DIO! ".center(100, "#")}
@@ -39,7 +40,7 @@ while True:
                 print("APENAS VALORES POSITIVOS. TENTE NOVAMENTE")
                 continue
             saldo += quantia_a_depositar
-            depositos.append(quantia_a_depositar)
+            extrato.append("+" + str(quantia_a_depositar))
         except ValueError:
             print("DIGITE APENAS NUMEROS. TENTE NOVAMENTE")
 
@@ -53,7 +54,7 @@ while True:
                 print("DIGITE APENAS NUMEROS POSITIVOS. TENTE NOVAMENTE")
                 continue
             elif (total_saques_realizados >= LIMITE_SAQUES_DIARIOS) or \
-            (quantia_a_sacar > 500.00):
+            (quantia_a_sacar >= 500.00):
                 print("VOCE JÁ ATINGIU O LIMITE DE SAQUES OU TENTOU SACAR MAIS DE R$ 500. TENTE NOVAMENTE MAIS TARDE")
                 continue
             elif (quantia_a_sacar > saldo):
@@ -61,23 +62,19 @@ while True:
                 continue
             
             total_saques_realizados +=1
-            saques.append(quantia_a_sacar)
+            extrato.append("-" + str(quantia_a_sacar))
             saldo -= quantia_a_sacar
         except ValueError:
             print("DIGITE APENAS NUMEROS. TENTE NOVAMENTE")
         
 
     elif opcao_escolhida == "3":
-        print("DEPOSITOS REALIZADOS:")
-        for valor in depositos:
-            print(f"R$ {valor:.2f}")
-        print()
+        print("============EXTRATO============")
 
-        print("SAQUES REALIZADOS:")
-        for valor in saques:
-            print(f"R$ {valor:.2f}")
-        print()
+        for i in extrato:
+            print(i)
 
+        print()
         print(f"VALOR NA CONTA: R$ {saldo:.2f}")
         print()
 
