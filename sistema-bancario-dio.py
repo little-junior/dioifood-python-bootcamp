@@ -29,7 +29,7 @@ while True:
     opcao_escolhida = input("| ")
     print()
 
-    os.system("clear")
+    os.system("cls")
     if opcao_escolhida == "1":
         print("VOCÊ ESCOLHEU A OPÇÃO: DEPÓSITO".center(50, "="))
         quantia_a_depositar = input("DIGITE A QUANTIA QUE DESEJA DEPOSITAR: R$ ")
