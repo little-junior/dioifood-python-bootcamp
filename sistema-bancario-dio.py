@@ -2,6 +2,19 @@
 
 import os
 
+def depositar(valor_deposito):
+    try:
+        valor_deposito = float(valor_deposito)
+        if valor_deposito < 0:
+            print("APENAS VALORES POSITIVOS. TENTE NOVAMENTE")
+            return 0
+    except ValueError:
+        print("DIGITE APENAS NUMEROS. TENTE NOVAMENTE")
+        return 0
+    
+    extrato.append("+" + str(valor_deposito))
+    return valor_deposito
+
 LIMITE_SAQUES_DIARIOS = 3
 LIMITE_VALOR_SAQUE = 500
 saldo = 0
@@ -34,15 +47,10 @@ while True:
         print("VOCÊ ESCOLHEU A OPÇÃO: DEPÓSITO".center(50, "="))
         quantia_a_depositar = input("DIGITE A QUANTIA QUE DESEJA DEPOSITAR: R$ ")
 
-        try:
-            quantia_a_depositar = float(quantia_a_depositar)
-            if quantia_a_depositar < 0:
-                print("APENAS VALORES POSITIVOS. TENTE NOVAMENTE")
-                continue
-            saldo += quantia_a_depositar
-            extrato.append("+" + str(quantia_a_depositar))
-        except ValueError:
-            print("DIGITE APENAS NUMEROS. TENTE NOVAMENTE")
+        deposito_final = depositar(quantia_a_depositar)
+        saldo += deposito_final
+            
+    
 
     elif opcao_escolhida == "2":
         print("VOCE ESCOLHEU A OPÇÃO: SAQUE".center(50, "="))
